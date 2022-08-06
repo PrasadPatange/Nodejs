@@ -1,25 +1,18 @@
-// console.log("Take Input From Command Line...")
-// console.log(process.argv) // It's an Array index start 0,1,2,...
-// console.log(process.argv[2])
-// console.log(process.argv[3])
-
-// To create file use fs module
 const fs = require('fs');
-const input = process.argv;
-// fs.writeFileSync(input[2],input[3])
-//cmd :
-// node index.js apple.txt "This is Fruit."
+// fs.writeFileSync("apple.txt","This is fruit")
+const path = require('path');
+const dirPath = path.join(__dirname,'files');//give file path 
+console.log(dirPath);
 
-if(input[2] == "add"){
-    fs.writeFileSync(input[3],input[4]);
-    // cmd :
-    // node index.js add orange.txt "This is color and  Fruit."
-}else if(input[2] == "remove"){
-    fs.unlinkSync(input[3]);
-    // cmd :
-    // node index.js remove orange.txt
-}else{
-    console.log("Invalid Input");
-    // cmd :
-    //node index.js
-}
+// create multiple files
+// for(let i=0; i<5; i++){
+//     fs.writeFileSync(`${dirPath}/hello${i}.txt`,"This is Simple File.")
+// }
+
+// Read file
+fs.readdir(dirPath,(err,files) =>{
+    // console.log(files);//array form
+    files.forEach((item) =>{
+        console.log("File Name Is : ",item);//single file
+    })
+})
