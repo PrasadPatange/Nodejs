@@ -1,12 +1,20 @@
-// Handle Async Data using Promise in Nodejs :
-let a = 20;
-let b = 0;
-let waitingData = new Promise((resolve,reject) =>{
-    setTimeout(()=>{
-        resolve(30);
-    },2000);
-})
-waitingData.then((data) =>{
-    b = data;
-    console.log(a+b);
-})
+// Nodejs Work Process :
+
+console.log("Starting Up...");
+
+// go into nodeApi because setTimeout is come from C++
+setTimeout(() => {
+  console.log("2 sec log");
+}, 2000);
+
+setTimeout(() => {
+  console.log("0 sec log");
+}, 0);
+
+console.log("Finishing Up...");
+
+// Output :
+// Starting Up...
+// Finishing Up...
+// 0 sec log
+// 2 sec log
