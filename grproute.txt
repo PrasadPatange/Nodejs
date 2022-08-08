@@ -2,37 +2,17 @@
 const express = require("express");
 const reqFilter = require("./middleware");
 const app = express();
+
 // apply group of middleware on route
 const route = express.Router();
 route.use(reqFilter);
-// //create middleware
-// const reqFilter = (req,res,next) =>{
-//   // console.log('reqFilter');
-//   // http://localhost:5000/users?age=10
-//   if (!req.query.age) {
-//      res.send("Please Provide Age");
-//   }else if (req.query.age < 18) {
-//     res.send("You Can Not Access This Page.");
-//  }
-//   else{
-//     next();
-//   }
-// }
 
-// app.use(reqFilter);
 
 app.get("/", (req, res) => {
   res.send("Welcome to Home Page.");
 });
 
-// Router - Level Middleware => apply on single route only
-// app.get('/users',reqFilter,(req,res) =>{
-//   res.send("Welcome to Users Page.");
-// });
-
-// app.get('/about',reqFilter,(req,res) =>{
-//   res.send("Welcome to About Page.");
-// });
+//apply middleware in multiple routes use route.get()
 
 app.get("/users", (req, res) => {
   res.send("Welcome to Users Page.");
