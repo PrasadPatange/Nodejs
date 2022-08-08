@@ -1,20 +1,26 @@
-// Nodejs Work Process :
+const express = require('express');
+// to make executable
+const app = express();
 
-console.log("Starting Up...");
+app.get('',(req,res) =>{
+  // put in browser : http://localhost:5000/?name=prasad
+  // console.log("Data Sent By Browser => ",req.query);
+  // Object => Data Sent By Browser =>  { name: 'prasad' }
+  console.log("Data Sent By Browser => ",req.query.name);
+  // name => Data Sent By Browser =>  prasad
+  // res.send("Welcome Folks , This is Home Page");
+  res.send("Welcome , " + req.query.name);
+  // Welcome , prasad
+});
 
-// go into nodeApi because setTimeout is come from C++
-setTimeout(() => {
-  console.log("2 sec log");
-}, 2000);
+app.get('/about',(req,res) =>{
+  res.send("Hello , This is About Page");
+});
 
-setTimeout(() => {
-  console.log("0 sec log");
-}, 0);
+app.get('/Help',(req,res) =>{
+  res.send("Hello , This is Help Page");
+});
 
-console.log("Finishing Up...");
-
-// Output :
-// Starting Up...
-// Finishing Up...
-// 0 sec log
-// 2 sec log
+app.listen(5000,()=>{
+  console.log("Server Started...")
+})
