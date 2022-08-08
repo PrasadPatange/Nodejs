@@ -19,9 +19,14 @@ app.get("",(_,res) =>{
 app.get("/profile",(_,res) =>{
   const user = {
     name : "Prasad",
-    email : "Prasad@gmail.com"
+    email : "Prasad@gmail.com",
+    skills : ['Javascript','TypeScript','Python','Angular','nodejs','nestjs','reactjs']
   }
    res.render("profile",{user});
+});
+
+app.get("/login",(_,res) =>{
+   res.render("login");
 });
 
 app.get("/aboutMe",(_,res) =>{
