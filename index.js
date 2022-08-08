@@ -1,49 +1,30 @@
-//Template Engine ejs to make Dynamic Web Pages :  
+// Middleware in Nodejs
 const express = require('express');
-const path = require('path');
-const publicPath = path.join(__dirname,"public");
-console.log(__dirname);
-console.log(publicPath);
-// make express Executable
 const app = express();
 
-// set template Engine ejs
-app.set('view engine','ejs');
-
-
-app.get("",(_,res) =>{
-  res.sendFile(`${publicPath}/index.html`);
-});
-
-// ejs file
-app.get("/profile",(_,res) =>{
-  const user = {
-    name : "Prasad",
-    email : "Prasad@gmail.com",
-    skills : ['Javascript','TypeScript','Python','Angular','nodejs','nestjs','reactjs']
+//create middleware
+// Applicaton-level Middleware
+const reqFilter = (req,res,next) =>{
+  // console.log('reqFilter');
+  // http://localhost:5000/users?age=10
+  if (!req.query.age) {
+     res.send("Please Provide Age");
+  }else if (req.query.age < 18) {
+    res.send("You Can Not Access This Page.");
+ }
+  else{
+    next();
   }
-   res.render("profile",{user});
+}
+
+app.use(reqFilter);
+
+app.get('/',(req,res) =>{
+  res.send("Welcome to Home Page.");
 });
 
-app.get("/login",(_,res) =>{
-   res.render("login");
+app.get('/users',(req,res) =>{
+  res.send("Welcome to Users Page.");
 });
 
-app.get("/aboutMe",(_,res) =>{
-  res.sendFile(`${publicPath}/about.html`);
-});
-
-app.get("/help",(_,res) =>{
-  res.sendFile(`${publicPath}/help.html`);
-});
-
-// Error Page
-app.get("*",(_,res) =>{
-  res.sendFile(`${publicPath}/nopage.html`);
-});
-
-
-app.listen(5000,()=>{
-  console.log("Server Started...")
-});
-
+app.listen(5000);
