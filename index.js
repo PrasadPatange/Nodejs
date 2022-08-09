@@ -12,6 +12,8 @@ async function getData() {
   let collection = db.collection('products');
   // Promise { <pending> } that's why
   let response = await collection.find({}).toArray();
+  // to find single Data
+  // let response = await collection.find({name:'M 40'}).toArray();
   console.log(response);
 }
 
