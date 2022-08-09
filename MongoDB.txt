@@ -1,0 +1,56 @@
+> show dbs                      //show all database
+   admin   40.00 KiB
+   config  60.00 KiB
+   local   40.00 KiB
+   prasad   8.00 KiB
+> use youtube                //create new database
+'switched to db youtube'
+> show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   40.00 KiB
+prasad   8.00 KiB
+> db.createCollection('videos') //create collection
+{ ok: 1 }
+> show dbs
+admin    40.00 KiB
+config   60.00 KiB
+local    40.00 KiB
+prasad    8.00 KiB
+youtube   8.00 KiB
+
+> show collections      //show collections
+videos
+> db.createCollection('playlists') // create collection
+{ ok: 1 }
+> show collections
+playlists
+videos
+> db.videos.drop()   //delete collection
+true
+> show collections    // show collections
+playlists
+
+> db
+youtube
+> db.dropDatabase()    // delete database
+{ ok: 1, dropped: 'youtube' }
+> db
+youtube
+> show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+prasad    8.00 KiB
+> use admin                 // switch database
+'switched to db admin'
+admin
+
+> db           //show current database
+ admin
+admin 
+
+
+
+
+

@@ -1,0 +1,43 @@
+CRUD Operations in MongoDB Using Commands :
+
+> use e-comm                                 // Use to Switch Database
+'switched to db e-comm'
+
+db.products.insertOne({name:'M 40',brand:'samsung',price:250,category:'mobile'})  //Insert one Data into Collection
+{ acknowledged: true,
+  insertedId: ObjectId("62f1face838fe9bd03b60e9e") }
+db.products.insertOne({name:'IPhone Max Pro',brand:'apple',price:1250,category:'mobile'})
+{ acknowledged: true,
+  insertedId: ObjectId("62f1fb22838fe9bd03b60e9f") }
+
+db.products.find()                                           // show all collection data
+{ _id: ObjectId("62f1face838fe9bd03b60e9e"),
+  name: 'M 40',
+  brand: 'samsung',
+  price: 250,
+  category: 'mobile' }
+{ _id: ObjectId("62f1fb22838fe9bd03b60e9f"),
+  name: 'IPhone Max Pro',
+  brand: 'apple',
+  price: 1250,
+  category: 'mobile' }
+{ _id: ObjectId("62f1fb8057b3e0c346f10020"),
+  name: 'U10',
+  brand: 'vivo',
+  price: 200,
+  category: 'mobile' }
+
+db.products.updateOne({name:"U10"},{$set:{brand:"oppo"}})  // Update single data in collection
+{ acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0 }
+
+db.products.deleteOne({brand:"apple"})   // Delete Single Data in Collection
+{ acknowledged: true, deletedCount: 1 }
+e-comm
+
+
+
+
