@@ -9,6 +9,7 @@ const app = express();
 // replace this by express.json()
 app.use(express.json());
 
+// get All Data Through API
 app.get("/", async (req, res) => {
   let data = await dbConnect();
   data = await data.find().toArray();
