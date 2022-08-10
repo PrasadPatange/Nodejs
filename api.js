@@ -16,14 +16,50 @@ app.get("/", async (req, res) => {
 
 // store new data through API use post()
 app.post("/", async (req, res) => {
-  // console.log(req.body);
-  // res.send({name:'prasad'});
-  // res.send(req.body);
   let data = await dbConnect();
-//   req.body => data comes from postman / angular / react etc.into nodejs
   let result = await data.insertOne(req.body); //data comes from postman / angular / react etc.into nodejs
   res.send(result);
 });
+
+// put() use to update data with API
+// app.put('/',async (req,res) =>{
+//     // console.log(req.body);
+//     let data = await dbConnect();
+//     // pass Static Data :
+//     // let result = data.updateOne(
+//     //     {name:"samsung J7"},
+//     //     {
+//     //       $set : {price:900}
+//     //     }
+//     //     )
+
+//     // pass dynamic data from postman : 
+//     let result = data.updateOne(
+//         {name:req.body.name},
+//         {
+//           $set : req.body
+//         }
+//         )
+
+//     res.send({result:"updated"})
+// });
+// through params :
+// http://localhost:5000/samsung M12
+
+app.put('/:name',async (req,res) =>{
+    let data = await dbConnect();
+    console.log(req.params.name);
+    console.log(req.body);
+    let result = await data.updateOne(
+        {name:req.params.name},
+        {
+          $set : req.body
+        }
+        )
+
+    res.send({result:"updated"})
+});
+
 app.listen(5000, () => {
   console.log("server started at http://localhost:5000/");
 });
