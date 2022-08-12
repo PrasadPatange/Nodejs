@@ -3,7 +3,7 @@ const EventEmitter = require('events'); //in-build module. EventEmitter is a cla
 const app = express();
 // create event Object
 const event = new EventEmitter();
-// Handle 
+// event Handle here 
 let count = 0;
 event.on("countAPI",()=>{
     // capture event
