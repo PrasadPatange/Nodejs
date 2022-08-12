@@ -21,6 +21,13 @@ app.get("/", (req, res) => {
 // POST API
 app.post('/',(req,res) =>{
     // res.send("Post");
+    // Static Data :
+    // const data = {
+    //     name:"gajanan",
+    //     password:"3030",
+    //     user_type:"visitor"
+    // };
+    // Dynamic Data :
     const data = req.body;
     con.query('INSERT INTO users SET ?', data, (error,result,fields) =>{
         if(error) error;
