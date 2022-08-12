@@ -2,7 +2,7 @@ const express = require("express");
 const con = require("./config");
 const app = express();
 
-// Parse data into json
+// Parse data into json or convert request body into json
 app.use(express.json());
 
 // GET API
@@ -19,21 +19,44 @@ app.get("/", (req, res) => {
 });
 
 // POST API
-app.post('/',(req,res) =>{
-    // res.send("Post");
-    // Static Data :
-    // const data = {
-    //     name:"gajanan",
-    //     password:"3030",
-    //     user_type:"visitor"
-    // };
-    // Dynamic Data :
-    const data = req.body;
-    con.query('INSERT INTO users SET ?', data, (error,result,fields) =>{
-        if(error) error;
-        res.send(result);
-        console.log(result);
-    })
-})
+app.post("/", (req, res) => {
+  // res.send("Post");
+  // Static Data :
+  // const data = {
+  //     name:"gajanan",
+  //     password:"3030",
+  //     user_type:"visitor"
+  // };
+  // Dynamic Data :
+  const data = req.body;
+  con.query("INSERT INTO users SET ?", data, (error, result, fields) => {
+    if (error) throw error;
+    res.send(result);
+    console.log(result);
+  });
+});
+
+// PUT API
+app.put("/:id", (req, res) => {
+  // res.send("Put API");
+  // Static Data :
+  // const data = ["tony","5050","Reader",4];
+  // Dynamic Data :
+  const data = [
+    req.body.name,
+    req.body.password,
+    req.body.user_type,
+    req.params.id,
+  ];
+  con.query(
+    "UPDATE users SET name =? , password =? ,user_type =? where id =?",
+    data,
+    (error, result, fields) => {
+      if (error) throw error;
+      res.send(result);
+      console.log(result);
+    }
+  );
+});
 
 app.listen(5000);
