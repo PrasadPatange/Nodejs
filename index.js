@@ -49,7 +49,7 @@ app.put("/:id", (req, res) => {
     req.params.id,
   ];
   con.query(
-    "UPDATE users SET name =? , password =? ,user_type =? where id =?",
+    "UPDATE users SET name =? , password =? ,user_type =? WHERE id =?",
     data,
     (error, result, fields) => {
       if (error) throw error;
@@ -58,5 +58,15 @@ app.put("/:id", (req, res) => {
     }
   );
 });
+
+// DELETE API
+app.delete("/:id",(req,res) =>{
+    con.query("DELETE FROM users WHERE id =" + req.params.id, (error,result,fields) =>{
+        if(error) throw error
+        res.send(result);
+    });
+    // res.send(req.params.id);
+    console.log(req.params.id);
+})
 
 app.listen(5000);
