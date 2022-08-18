@@ -26,6 +26,15 @@ app.get('/list',async(req,res) =>{
     res.send(data);
 });
 
+// GET API FOR SINGLE DATA
+//http://localhost:5000/62f281b2a36e27aa9b678910
+app.get('/list/:_id',async(req,res) =>{
+  console.log(req.params);
+    let data = await Product.findOne(req.params)
+    console.log(data);
+    res.send(data);
+});
+
 // DELETE API
 // http://localhost:5000/delete/62f21a0e838fe9bd03b60ea1
 app.delete('/delete/:_id',async(req,res) =>{
